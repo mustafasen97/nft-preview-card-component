@@ -1,0 +1,193 @@
+// -----------------------------
+// Variables
+// -----------------------------
+
+$color-blue-500: hsl(215, 51%, 70%);
+$color-cyan-400: hsl(178, 100%, 50%);
+
+$color-blue-950: hsl(217, 54%, 11%);
+$color-blue-900: hsl(216, 50%, 16%);
+$color-blue-800: hsl(215, 32%, 27%);
+$color-white: hsl(0, 0%, 100%);
+
+// Typography
+$ff-primary: "Outfit", sans-serif;
+$fs-base: 1rem; // 16px
+$fs-sm: 0.875rem; // 14px
+$fs-md: 1.125rem; // 18px
+$fs-lg: 1.25rem; // 20px
+$fs-xl: 1.375rem; // 22px
+$fw-light: 300;
+$fw-regular: 400;
+$fw-semibold: 600;
+
+// Spacing
+$space-sm: 1rem; // 16px
+$space-md: 1.3rem; // 24px
+$space-lg: 1.5rem; // 24px
+
+// Layout & Effects
+$card-width: 350px;
+$border-radius: 15px;
+
+// -----------------------------
+// Base
+// -----------------------------
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html {
+  min-height: 100vh;
+  background-color: $color-blue-950;
+  font-family: $ff-primary;
+  font-size: $fs-base;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+// -----------------------------
+// NFT Card Component
+// -----------------------------
+
+.nft-card {
+  &__content {
+    background-color: $color-blue-900;
+    max-width: $card-width;
+    padding: $space-lg;
+    border-radius: $border-radius;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  &__image-link {
+    display: block;
+    position: relative;
+    border-radius: $border-radius;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $color-cyan-400;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .nft-card__image {
+      width: 100%;
+      display: block;
+    }
+
+    .nft-card__view-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      &::before {
+        opacity: 0.5;
+      }
+
+      .nft-card__view-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__title {
+    font-size: $fs-lg;
+    color: $color-white;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $color-cyan-400;
+      cursor: pointer;
+    }
+  }
+
+  &__description {
+    color: $color-blue-500;
+    font-weight: $fw-regular;
+    line-height: 1.4;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-blue-800;
+    padding-bottom: $space-md;
+  }
+
+  &__ethereum,
+  &__time {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: $fs-sm;
+  }
+
+  &__ethereum {
+    color: $color-cyan-400;
+  }
+
+  &__time {
+    color: $color-blue-500;
+  }
+
+  &__icon {
+    object-fit: cover;
+  }
+
+  &__author-info {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+  }
+
+  &__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid $color-white;
+  }
+
+  &__author {
+    font-size: $fs-sm;
+    color: $color-blue-500;
+
+    &-link {
+      color: $color-white;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $color-cyan-400;
+      }
+    }
+  }
+}
